@@ -1,4 +1,4 @@
-import { addNewInvoice, getAllInvoices, getInvoiceByChrono, updateInvoiceByChrono, deleteInvoiceByChrono } from '../controllers/Invoice.js'
+import { addNewInvoice, getAllInvoices, getInvoiceByChrono, updateInvoiceByChrono, deleteInvoiceByChrono } from '../controllers/Invoice'
 import { NextFunction, Request, Response, Router } from "express"
 export const invoicesRoute = Router()
 
