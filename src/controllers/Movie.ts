@@ -16,8 +16,14 @@ const addNewMovie = (req: Request, res: Response) => {
 
     return newMovie
         .save()
-        .then((data: Movie) => res.status(201).json({data}))
-        .catch((err: any) => res.status(500).json({ err }));
+        .then((data: Movie) => res.status(201).json({
+            error: false,
+            message: "Le film a correctement été ajouté."
+        }))
+        .catch((err: any) => res.status(500).json({
+            error: true,
+            message: err
+        }));
 }
 
 // Updating movie data
