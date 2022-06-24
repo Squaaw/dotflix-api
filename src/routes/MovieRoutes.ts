@@ -1,4 +1,4 @@
-import { addNewMovie, updateMovie } from '../controllers/Movie'
+import { addNewMovie, updateMovie, deleteMovie } from '../controllers/Movie'
 import { NextFunction, Request, Response, Router } from "express"
 export const moviesRoute = Router()
 
@@ -17,3 +17,11 @@ moviesRoute
     console.log(`Request type : ${req.method}`)
     next();
 }, updateMovie)
+
+// Removing a movie by ID
+moviesRoute
+.delete("/movie/:id", (req: Request, res: Response, next: NextFunction) => {
+    console.log(`Request from : ${req.originalUrl}`)
+    console.log(`Request type : ${req.method}`)
+    next();
+}, deleteMovie)

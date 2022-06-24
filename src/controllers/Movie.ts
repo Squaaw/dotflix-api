@@ -57,4 +57,28 @@ const updateMovie = (req: Request, res: Response) => {
         }));
 };
 
-export { addNewMovie, updateMovie };
+const deleteMovie = (req: Request, res: Response) => {
+    const movieId = new mongoose.Types.ObjectId(req.params.id);
+
+    MovieSchema.findOneAndDelete({ _id: movieId })
+        .then((data: Movie) => {
+            if (!data)
+                return res.status(404).json({
+                    error: true,
+                    message: "Le film que vous souhaitez supprimer n'existe pas !"
+                });
+
+            return res.status(201).json({
+                error: false,
+                message: `Le film ${data.title} a correctement été supprimé.`
+            })
+        })
+        .catch((err) => {
+            return res.status(500).json({
+                error: true,
+                message: err
+            })
+        })
+};
+
+export { addNewMovie, updateMovie, deleteMovie };
