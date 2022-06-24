@@ -10,7 +10,7 @@ moviesRoute
     next();
 }, addNewMovie)
 
-// Updating movie data
+// Updating movie data by ID
 moviesRoute
 .put("/movie/:id", (req: Request, res: Response, next: NextFunction) => {
     console.log(`Request from : ${req.originalUrl}`)

@@ -33,32 +33,27 @@ const addNewMovie = (req: Request, res: Response) => {
 // Updating movie data
 const updateMovie = (req: Request, res: Response) => {
     const movieId = new mongoose.Types.ObjectId(req.params.id);
+    const movieData = req.body
 
-    return MovieSchema.findById(movieId)
-        .then((data) => {
-            if (!data)
+    MovieSchema.findOneAndUpdate({ _id: movieId }, movieData)
+        .then((doc: Movie) => {
+            if (!doc)
                 return res.status(404).json({
                     error: true,
                     message: "Le film que vous souhaitez modifier n'existe pas !"
                 });
-                
-            data.set(req.body);
 
-            return data
-                .save()
-                .then((data: any) => res.status(200).json({
-                    error: false,
-                    message: "Les informations du film ont correctement été mises à jour."
-                }))
-                .catch((err: any) => res.status(500).json({
-                    error: true,
-                    message: err
-                }));
+            return res.status(200).json({
+                error: false,
+                message: `Les informations du film ${doc.title} ont correctement été mises à jour.`
+            })
         })
-        .catch((error) => res.status(500).json({
-            error: true,
-            message: error
-        }));
+        .catch((err) => {
+            return res.status(500).json({
+                error: true,
+                message: err
+            })
+        })
 };
 
 const deleteMovie = (req: Request, res: Response) => {
