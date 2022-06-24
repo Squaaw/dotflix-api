@@ -114,4 +114,4 @@ const deleteMovie = (req: Request, res: Response) => {
         })
 }
 
-export { addNewMovie, updateMovie, deleteMovie, getAllMovies, getMovieById, getMoviesByGenre };
+export { addNewMovie, updateMovie, deleteMovie, getAllMovies, getMovieById, getMoviesByGenre }

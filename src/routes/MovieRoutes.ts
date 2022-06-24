@@ -1,39 +1,21 @@
 import { getAllMovies, getMovieById, getMoviesByGenre, addNewMovie, updateMovie, deleteMovie } from '../controllers/Movie'
-import { NextFunction, Request, Response, Router } from "express"
+import { Router } from "express"
 export const moviesRoute = Router()
 
 // Fetching all movies
-moviesRoute
-.get('/movie', (req: Request, res: Response, next: NextFunction) => {
-    next();
-}, getAllMovies)
+moviesRoute.get('/movie', getAllMovies)
 
 // Fetching movie by ID
-moviesRoute
-.get('/movie/:id', (req: Request, res: Response, next: NextFunction) => {
-    next();
-}, getMovieById)
+moviesRoute.get('/movie/:id', getMovieById)
 
 // Fetching movies by genre
-moviesRoute
-.get('/movie/genre/:genre', (req: Request, res: Response, next: NextFunction) => {
-    next();
-}, getMoviesByGenre)
+moviesRoute.get('/movie/genre/:genre', getMoviesByGenre)
 
 // Adding new movie
-moviesRoute
-.post("/movie", (req: Request, res: Response, next: NextFunction) => {
-    next();
-}, addNewMovie)
+moviesRoute.post('/movie', addNewMovie)
 
 // Updating existing movie data by ID
-moviesRoute
-.put("/movie/:id", (req: Request, res: Response, next: NextFunction) => {
-    next();
-}, updateMovie)
+moviesRoute.put('/movie/:id', updateMovie)
 
 // Removing existing movie by ID
-moviesRoute
-.delete("/movie/:id", (req: Request, res: Response, next: NextFunction) => {
-    next();
-}, deleteMovie)
+moviesRoute.delete('/movie/:id', deleteMovie)
