@@ -16,10 +16,10 @@ const addNewMovie = (req: Request, res: Response) => {
 
     newMovie
         .save()
-        .then((data: Movie) => {
+        .then((doc: Movie) => {
             return res.status(201).json({
                 error: false,
-                message: `Le film ${data.title} a correctement été ajouté.`
+                message: `Le film ${doc.title} a correctement été ajouté.`
             })
         })
         .catch((err: any) => {
@@ -30,18 +30,18 @@ const addNewMovie = (req: Request, res: Response) => {
         })
 }
 
-// Updating movie data
+// Updating existing movie data
 const updateMovie = (req: Request, res: Response) => {
-    const movieId = new mongoose.Types.ObjectId(req.params.id);
+    const movieFilter = { _id: new mongoose.Types.ObjectId(req.params.id) }
     const movieData = req.body
 
-    MovieSchema.findOneAndUpdate({ _id: movieId }, movieData)
+    MovieSchema.findOneAndUpdate(movieFilter, movieData)
         .then((doc: Movie) => {
             if (!doc)
                 return res.status(404).json({
                     error: true,
                     message: "Le film que vous souhaitez modifier n'existe pas !"
-                });
+                })
 
             return res.status(200).json({
                 error: false,
@@ -54,18 +54,19 @@ const updateMovie = (req: Request, res: Response) => {
                 message: err
             })
         })
-};
+}
 
+// Removing existing movie
 const deleteMovie = (req: Request, res: Response) => {
-    const movieId = new mongoose.Types.ObjectId(req.params.id);
+    const movieFilter = { _id: new mongoose.Types.ObjectId(req.params.id) }
 
-    MovieSchema.findOneAndDelete({ _id: movieId })
+    MovieSchema.findOneAndDelete(movieFilter)
         .then((data: Movie) => {
             if (!data)
                 return res.status(404).json({
                     error: true,
-                    message: "Le film que vous souhaitez supprimer n'existe pas !"
-                });
+                    message: "Le film que vous souhaitez supprimer n'existe pas ou a déjà été supprimé !"
+                })
 
             return res.status(201).json({
                 error: false,
@@ -78,6 +79,6 @@ const deleteMovie = (req: Request, res: Response) => {
                 message: err
             })
         })
-};
+}
 
 export { addNewMovie, updateMovie, deleteMovie };
