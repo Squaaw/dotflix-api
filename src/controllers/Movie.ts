@@ -30,6 +30,19 @@ const getMovieById = (req: Request, res: Response) => {
         })
 }
 
+// Fetching all movies by genre
+const getMoviesByGenre = (req: Request, res: Response) => {
+    const genre = req.params.genre
+
+    // récupérer un ID
+    // rechercher si le genre existe
+    // si il existe, récupérer son nom et rechercher le film avec
+
+    return MovieSchema.find({ category: genre })
+        .then((doc: Movie[]) => res.status(200).json({ movies: doc }))
+        .catch((err: any) => res.status(500).json({ error: true, message: err }))
+}
+
 // Adding new movie
 const addNewMovie = (req: Request, res: Response) => {    
     const newMovie = new MovieSchema({
@@ -101,4 +114,4 @@ const deleteMovie = (req: Request, res: Response) => {
         })
 }
 
-export { addNewMovie, updateMovie, deleteMovie, getAllMovies, getMovieById };
+export { addNewMovie, updateMovie, deleteMovie, getAllMovies, getMovieById, getMoviesByGenre };

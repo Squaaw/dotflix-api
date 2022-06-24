@@ -1,4 +1,4 @@
-import { getAllMovies, getMovieById, addNewMovie, updateMovie, deleteMovie } from '../controllers/Movie'
+import { getAllMovies, getMovieById, getMoviesByGenre, addNewMovie, updateMovie, deleteMovie } from '../controllers/Movie'
 import { NextFunction, Request, Response, Router } from "express"
 export const moviesRoute = Router()
 
@@ -13,6 +13,12 @@ moviesRoute
 .get('/movie/:id', (req: Request, res: Response, next: NextFunction) => {
     next();
 }, getMovieById)
+
+// Fetching movies by genre
+moviesRoute
+.get('/movie/genre/:genre', (req: Request, res: Response, next: NextFunction) => {
+    next();
+}, getMoviesByGenre)
 
 // Adding new movie
 moviesRoute
