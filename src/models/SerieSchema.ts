@@ -3,29 +3,36 @@ import { Serie } from "../interfaces/Serie";
 
 const SerieSchema: Schema = new Schema({
     title:{
-        type: String
+        type: String,
+        required: true
     },
     synopsis:{
-        type: String
+        type: String,
+        required: true
     },
     category:{
-        type: [String]
+        type: [String],
+        required: true
     },
     releaseDate:{
-        type: Date
+        type: Date,
+        required: true
     },
     endDate:{
         type: Date
     },
     posterUrl:{
-        type: String
+        type: String,
+        required: true
     },
-    seasons:{
-        type: [Schema.Types.Mixed]
-    }
-    /*seasons:[{
+    seasons:[{
+        _id:{
+            type: mongoose.Types.ObjectId,
+            required: true
+        },
         number:{
-            type: Number
+            type: Number,
+            required: true
         }
         // ,
         // episodes: [{
@@ -48,7 +55,7 @@ const SerieSchema: Schema = new Schema({
         //         type: String
         //     }
         // }]
-    }]*/
+    }]
 })
 
 export default mongoose.model<Serie>('Serie', SerieSchema);
