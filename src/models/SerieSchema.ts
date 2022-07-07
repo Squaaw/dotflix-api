@@ -19,7 +19,36 @@ const SerieSchema: Schema = new Schema({
     },
     posterUrl:{
         type: String
+    },
+    seasons:{
+        type: [Schema.Types.Mixed]
     }
+    /*seasons:[{
+        number:{
+            type: Number
+        }
+        // ,
+        // episodes: [{
+        //     number:{
+        //         type: Number
+        //     },
+        //     title:{
+        //         type: String
+        //     },
+        //     synopsis:{
+        //         type: String
+        //     },
+        //     duration:{
+        //         type: Number
+        //     },
+        //     posterUrl:{
+        //         type: String
+        //     },
+        //     episodeUrl:{
+        //         type: String
+        //     }
+        // }]
+    }]*/
 })
 
 export default mongoose.model<Serie>('Serie', SerieSchema);
