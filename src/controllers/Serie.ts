@@ -323,13 +323,6 @@ const deleteEpisode = async (req: Request, res: Response) => {
         }
     }
 
-    // const options = {
-    //     arrayFilters: [
-    //         { "season._id": new mongoose.Types.ObjectId(req.params.seasonId) },
-    //         { "episode._id": new mongoose.Types.ObjectId(req.params.episodeId) }
-    //     ]
-    // }
-
     SerieSchema.findOneAndUpdate(filter, query)
         .then((doc: Serie) => {
             if (!doc) {
