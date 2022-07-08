@@ -33,28 +33,33 @@ const SerieSchema: Schema = new Schema({
         number:{
             type: Number,
             required: true
-        }
-        // ,
-        // episodes: [{
-        //     number:{
-        //         type: Number
-        //     },
-        //     title:{
-        //         type: String
-        //     },
-        //     synopsis:{
-        //         type: String
-        //     },
-        //     duration:{
-        //         type: Number
-        //     },
-        //     posterUrl:{
-        //         type: String
-        //     },
-        //     episodeUrl:{
-        //         type: String
-        //     }
-        // }]
+        },
+        episodes: [{
+            _id:{
+                type: mongoose.Types.ObjectId,
+                required: true
+            },
+            number:{
+                type: Number,
+                required: true
+            },
+            title:{
+                type: String,
+                required: true
+            },
+            synopsis:{
+                type: String,
+                required: true
+            },
+            duration:{
+                type: Number,
+                required: true
+            },
+            posterUrl:{
+                type: String,
+                required: true
+            }
+        }]
     }]
 })
 
