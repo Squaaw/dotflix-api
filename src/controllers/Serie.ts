@@ -8,7 +8,7 @@ import { exit } from "process"
 // Fetching all series
 const getAllSeries = (req: Request, res: Response) => {
     return SerieSchema.find()
-        .then((doc: Serie[]) => res.status(200).json({ series: doc }))
+        .then((doc: Serie[]) => res.status(200).json(doc))
         .catch((err: any) => res.status(500).json({ error: true, message: err }))
 }
 
@@ -41,7 +41,7 @@ const getSeriesByGenre = (req: Request, res: Response) => {
     // si il existe, récupérer son nom et rechercher la série avec
 
     return SerieSchema.find({ category: genre })
-        .then((doc: Serie[]) => res.status(200).json({ series: doc }))
+        .then((doc: Serie[]) => res.status(200).json(doc))
         .catch((err: any) => res.status(500).json({ error: true, message: err }))
 }
 

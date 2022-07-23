@@ -6,7 +6,7 @@ import MovieSchema from "../models/MovieSchema"
 // Fetching all movies
 const getAllMovies = (req: Request, res: Response) => {
     return MovieSchema.find()
-        .then((doc: Movie[]) => res.status(200).json({ movies: doc }))
+        .then((doc: Movie[]) => res.status(200).json(doc))
         .catch((err: any) => res.status(500).json({ error: true, message: err }))
 }
 
@@ -39,7 +39,7 @@ const getMoviesByGenre = (req: Request, res: Response) => {
     // si il existe, récupérer son nom et rechercher le film avec
 
     return MovieSchema.find({ category: genre })
-        .then((doc: Movie[]) => res.status(200).json({ movies: doc }))
+        .then((doc: Movie[]) => res.status(200).json(doc))
         .catch((err: any) => res.status(500).json({ error: true, message: err }))
 }
 
